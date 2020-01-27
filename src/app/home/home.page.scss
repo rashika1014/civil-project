@@ -1,0 +1,160 @@
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+.slide-image {
+  max-width: 100%;
+  width: 100%;
+}
+
+.slide-zoom {
+  height: 100%;
+}
+.htitle {
+  line-height: 3;
+}
+.logoC {
+  height: 55px;
+  width: 60px;
+  float: right;
+  /* background: #ffffff; */
+  border-radius: 50%;
+} 
+
+.homeB {
+  margin: 2% 10%;
+  padding-bottom: 5%;
+  background-repeat: no-repeat;
+  background-image: url(https://www.vvscon.in/images/secondary-guy-1.jpg?id=1892);
+  color: darkblue;
+  font: small-caption;
+}
+.H1Detail{
+  color: #e8833b;
+}
+U{
+ color: rgb(0, 140, 255);
+}
+
+.homeC {
+  margin: 2% 10%;
+  padding-bottom: 15%;
+}
+
+// css for message card from other web site
+.widget-title {
+  font-size: 1.875rem;
+  margin-bottom: 2.5rem;
+}
+.testimonial__container {
+  position: relative;
+  font-size: 1.2rem;
+}
+
+// @media (min-width: 992px)
+.testimonial {
+    display: inline-block;
+    width: calc(100% - 6.875rem);
+    border-left: 3px solid #edac15;
+    border-top: 0;
+    margin-bottom: 2.1875rem;
+}
+// @media (min-width: 544px)
+.testimonial {
+    padding: 3.75rem;
+}
+.testimonial {
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1.875rem;
+    font-size: 0;
+    border-top: 3px solid #edac15;
+    margin-bottom: 1.875rem;
+}
+.carousel {
+    position: relative;
+}
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+// @media not all, (-webkit-transform-3d)
+.carousel-inner > .carousel-item {
+    transition: -webkit-transform .6s ease-in-out;
+    transition: transform .6s ease-in-out;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+.carousel-inner > .carousel-item {
+    position: relative;
+    display: none;
+    transition: .6s ease-in-out left;
+}
+
+// @media (min-width: 992px)
+.testimonial__carousel--left {
+    right: 3.4375rem;
+}
+.testimonial__carousel--right {
+  right: 0;
+  margin-left: 0;
+}
+// @media (min-width: 992px)
+.testimonial__carousel {
+    position: absolute;
+    height: inherit;
+    width: 2.8125rem;
+    margin-left: 0.625rem;
+    top: 0;
+    bottom: 2.1875rem;
+}
+.testimonial__carousel {
+    display: inline-block;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: #999999;
+    transition: all 200ms ease-out;
+    width: calc(50% - 0.9375rem);
+    text-align: center;
+    height: 2.8125rem;
+    line-height: 2.8125rem;
+}
+.testimonial__quote {
+  width: 98%;
+}
+
+.clientSlide{
+  border: 5px solid #24d6ea;
+  padding-bottom: 25px;
+  // text-align-last: left;
+  // /* padding-bottom: 43px; */
+  // padding: 0 20px 20px 20px;
+}
+h4{
+  color: #730f0f;
+}
+
+ion-footer{
+  height: 60px;
+}
+.footer-toolbar{
+  line-height: 2;
+}
+.footer-title{
+  font-size: 1.6rem;
+    padding: 6px 16px;
+}
+
+.footerIcons {
+  display: -webkit-inline-box;
+  font-size: -webkit-xxx-large;
+}
+
+a {
+  color : #ffffff;
+}

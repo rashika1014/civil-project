@@ -1,0 +1,25 @@
+.signup .marginInput {
+	margin: 13px 8px 13px 16px;
+}
+.signup .marginLabel {
+	margin: 13px 8px 0px 16px;
+}
+.whiteSpaceNormal {
+	white-space: pre-line;
+}
+pre {
+	margin: 0px;
+	font-family: inherit;
+}
+.boldIt {
+  font-weight: 800;
+  text-decoration: underline;
+}
+.color {
+	color :  var(--theme-color-light); 
+}
+.Img {
+	margin: 0 auto;
+  display: block;
+  padding: 0 20% 8% 20% !important;
+}

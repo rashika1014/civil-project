@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="dark">
+      <ion-buttons slot="start">
+        <ion-button (click)="goToHomePage()">
+          <ion-icon name="arrow-back">
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    <ion-title>
+       LOGIN
+    </ion-title>
+    </ion-toolbar>
+</ion-header>
+    
+<ion-content padding class="login">
+  <span>
+    <img src="assets/images/output-onlinepngtools.jpg" class="auth-img profileImg" style="border-radius:7px; width:25%;">
+  </span>
+
+  <div *ngIf="!isLoginWithPhone">
+    <h4 margin class="border-radius-padding" *ngIf="!showVerify">
+      <ion-item>
+        <ion-label postion="floating">
+            <ion-icon name="call" item-start></ion-icon>
+            Enter phone number
+        </ion-label>
+        <ion-input [(ngModel)]='phoneNumber'  name="phoneNumber" type="tel" 
+          (ionChange)='checkMobileNoLength($event)' maxlength="10">
+        </ion-input>
+      </ion-item>
+    </h4>
+    <!-- <span class="errMsgLogin" padding-left>{{errMsgPhone}}</span> -->
+    <h3 no-padding no-margin *ngIf="!showVerify">
+        <button ion-button block color="teal" [disabled]="sendCodeBtnDisable" (click)="send()">Send Code</button>
+    </h3>
+    <h4 margin class="border-radius-padding" *ngIf="showVerify">
+        <ion-input placeholder="enter OTP" [(ngModel)]="otp" type="number"></ion-input>
+    </h4>
+    <h3 no-padding no-margin *ngIf="showVerify">
+      <ion-button block color="teal" [disabled]="verifyBtnDisable" (click)="verify()">Verify</ion-button>
+      <ion-button clear center margin-auto tappable (click)="openPhoneDialogAndHideOtp()">
+        LOGIN WITH OTP
+      </ion-button>
+    </h3>
+  </div>
+
+  <form *ngIf="isLoginWithPhone" [formGroup]="loginForm" (ngSubmit)="loginUser($event)">
+    <ion-item>
+      <ion-label position="stacked">EMAIL</ion-label>
+      <ion-input id="email" formControlName="email" [(ngModel)]="email"  value="" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">PASSWORD</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button style="display:block" color="dark" type="submit" class="button1 button1" >
+      LOGIN
+    </ion-button>
+  </form>
+
+  <!-- <ion-button color="dark" style="display:block" type="button" (click)="goToSignup()">
+    {{ 'CREATE_A_NEW_ACCOUNT' | translate }}
+  </ion-button> -->
+  <ion-button color="dark" style="display:block" type="button" (click)="resetPassword(email)">
+    RESET PASSWORD
+  </ion-button>
+</ion-content>

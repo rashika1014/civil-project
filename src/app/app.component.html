@@ -1,0 +1,94 @@
+<ion-app>
+  <!-- <ion-split-pane contentId="main-content"> -->
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar color="dark">
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <ion-list *ngIf="isAdmin==true">
+          <ion-menu-toggle auto-hide="true">
+            <ion-label class="adminPanel">
+              Admin Panel
+            </ion-label>
+            <ion-item (click)="goToQeryPage()">
+              <ion-icon slot="start" name="people"></ion-icon>
+              <ion-label>
+                Contact Query
+              </ion-label>
+            </ion-item>
+            <ion-item (click)="goToAddSlides()">
+              <ion-icon slot="start" name="add-circle"></ion-icon>
+              <ion-label>
+                Add Home Slides
+              </ion-label>
+            </ion-item>
+            <ion-item (click)="goToGalleryPage()">
+              <ion-icon slot="start" name="film"></ion-icon>
+              <ion-label>
+                Add Gallery Images
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <div class="color-grey font-sm addressClass">
+          <b style="color:#B01D25">Goyal - Land Surveyors & Consultant</b>
+          <hr>
+          <b style="width:100%; display:inline-block;">
+            Address:
+            <span style="float:right;" >
+                <ion-icon name="md-pin" style="font-size: 1em; color:var(--theme-color-light);">
+                </ion-icon>
+              <!-- <span style="font-size: 0.9em;"><u>Get Directions</u></span> -->
+            </span>
+          </b>
+          <br>
+          Near Resham Udyog Devdara, Mandla, Madhya Pradesh 481661
+          <br>
+          <b style="width:100%; display:inline-block;">
+            +91 9407090800 
+            <span style="float:right;">
+              <ion-icon name="ios-call" style="font-size: 1em; color:var(--theme-color-light);">
+              </ion-icon>
+              <!-- <span style="font-size: 0.9em;"><u>Call</u></span> -->
+            </span>
+          </b>
+          <br>
+          <b style="width:100%; display:inline-block;">
+            goyallandsurvey@gmail.com
+            <span style="float:right;">
+              <ion-icon name="ios-mail" style="font-size: 1em; color:var(--theme-color-light);">
+              </ion-icon>
+              <!-- <span style="font-size: 0.9em;"><u>mail</u></span> -->
+            </span>
+          </b>
+          <hr>
+          <br>
+        </div>
+      </ion-content>
+      <ion-footer padding style="font-size: 0.8em; background-color:#fff;">
+        <small>
+          Powered by:
+          <br>
+          CODECHINTAN TECHNOLOGIES | &copy; 2020 ALL RIGHTS RESERVED
+        </small>
+        <ion-menu-toggle auto-hide="true">
+          <ion-icon *ngIf="isAdmin==false" name="log-in" style="font-size: 2em; color:var(--theme-color-light);float: right;" (click)="goTOLoginPage()"></ion-icon>
+          <ion-icon *ngIf="isAdmin==true" name="log-out" style="font-size: 2em; color:var(--theme-color-light);float: right;" (click)="logOut()"></ion-icon>
+        </ion-menu-toggle>
+      </ion-footer>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  <!-- </ion-split-pane> -->
+</ion-app>

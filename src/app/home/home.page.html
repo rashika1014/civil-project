@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="htitle">
+      Surveyors
+        <img src="assets/icon/logo.png" #myImage class="logoC" width="50" height="50" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-slides pager [options]="sliderOpts">
+    <ion-slide *ngFor="let slide of slides; let i = index">
+      <img [src]="slide.src" class="slide-image" #myImage />
+    </ion-slide>
+    <!-- <ion-slide>
+      <img src="assets/images/sur2.jpg" class="slide-image" #myImage />
+    </ion-slide> -->
+  </ion-slides>
+  <ion-list lines="none" class="homeB">
+      <div class="H1Detail">
+        <h3>GOYAL LAND SURVEYORS :</h3>
+      </div>
+      <h5><b>Rely on Us for Fast & Accurate Land Surveillance</b></h5>
+      <h5>We are professionally managed team of land surveyors located at Mandala, Madhya Pradesh. We are successfully executing survey projects in and around the vicinity of Mandala suburbs.</h5>
+      <h5>Our survey activities also cater to areas on the outskirts of Mandala in Jabalpur, Kanhakisli.</h5>
+      <h5>We operate from a well-equipped office at Mandala (M.P.) accompanied by a network of skilled professionals including</h5>
+      <h5>engineers, supervisors, technicians and marketing executives. Experienced professionals assure our esteemed clients of ethical business practices and flawless services.</h5>
+      <h5>Over the years, we have implemented a range of services inclusive of 
+        <u>
+          <i (click)="openPage('landsurvey')">engineering land survey</i>,
+          <i (click)="openPage('plot')">Layout plot demarcation</i>,
+          <i (click)="openPage('contour')">contour survey</i>, 
+          <i (click)="openPage('earth')">estimation & volume of excavation and filling of earth moving work</i>
+        </u>.
+      </h5>
+        
+      <h5>Goyal Land Surveyors & Consultants has been acknowledged for its effectiveness and accuracy in delivering services under the stipulated project duration. Our field operations involve usage of cutting edge technologies and latest processing software.</h5>
+      <ion-button (click)="goToContactPage()">
+        Schedule an Appointment
+      </ion-button>
+    </ion-list>
+
+    <ion-list class="homeC">
+      <h3 class="widget-title"><span>Happy Clients</span></h3>
+      <ion-slides pager (ionDidChange)="onSlideChanged()"
+      [options]="sliderOpts" class="clientSlide">
+      <ion-slide style="display: block;">
+        <h4>Vardhman Global Infrastructure Pvt. Ltd.</h4>
+        <h5 class="testimonial__quote">
+          The work that was done was outstanding and the project was completed on 
+          time and under budget. The staff was very helpful when we had questions 
+          on various phases of the contract. We would not hesitate to recommend Goyal 
+          Land Surveyors for similar projects and would hope to use them again in the future. </h5>
+      </ion-slide>
+        <ion-slide style="display: block;">
+          <h4>Nirman Associates, Sagar</h4>
+          <h5 class="testimonial__quote">
+            The task management is worth praising, team co-ordination of Goyal Land Surveyors is well-equipped.
+            We are happy with the project that is done in a fine manner by this company, hope to work again in future.
+             </h5>
+        </ion-slide>
+        <ion-slide style="display: block;">
+          <h4>Cantonment board office, Sagar</h4>
+          <h5 class="testimonial__quote">
+            We are very impressed with this company,. They were very responsive and 
+            came out the day after Thanksgiving to give me a bid.
+             They were reasonable and very professional. </h5>
+        </ion-slide>
+        <ion-slide style="display: block;">
+          <h4>Grand pipal resort, Mukki, Kanha National Park</h4>
+          <h5 class="testimonial__quote"> 
+            It was a pleasure dealing with Goyal Land Surveyors  From their 
+            attitude and  approach to the execution and completion of the project, 
+            Goyal Land Surveyors was totally professional. We are very pleased. </h5>
+        </ion-slide>
+      </ion-slides>
+    </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="footer-toolbar" color="dark">
+    <ion-title class="footer-title" style="display: inline-block">Connect with us</ion-title>
+    <div class="footerIcons">
+      <div> 
+        <a href="https://www.facebook.com/goyallandsurvey/" target="_blank">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </a></div>
+      <div>
+        <a href="https://www.linkedin.com/in/goyal-land-survey-and-consultant-77131b1a0/" target="_blank">
+        <ion-icon name="logo-linkedin"></ion-icon></a> 
+      </div>
+      <div><a href="https://instagram.com/goyallandsurvey?igshid=1p47ra07obm5s" target="_blank">
+        <ion-icon name="logo-instagram"></ion-icon></a> 
+      </div>
+      </div>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Gallery
+    </ion-title>
+  </ion-toolbar>
+  <ng-progress #progressBar id="myProgress" color="#FF4500"></ng-progress>
+</ion-header>
+
+<ion-content>
+  <span *ngIf="isAdmin==true">
+    <ion-item-divider light>
+      Upload images
+    </ion-item-divider><br><br>
+      <ion-item>
+        <input id="slideImg" class="marginInput" type="file" placeholder="select gallery image" (change)="onImageFileChange()" multiple />
+        <img *ngIf="currentSrc" src="{{currentSrc}}" style="max-width:100px; float:right;">
+      </ion-item>
+      
+      <ion-button color= "dark" [disabled]="submitDisabled" type="submit" style="display: block;" (click)="addImage($event)">
+         ADD
+      </ion-button>
+  </span>
+
+  <ion-card padding *ngFor="let image of images; let i = index" class="galleryCard">
+    <ion-row class="categoryWiseProductRow" style="background:#fff; margin:10px">
+      <ion-col>
+        <img [src]="image.src" class="productCardImg" #myImage>
+        <span *ngIf="isAdmin==true">
+          <ion-button outline small item-right icon-only  color= "light" (click)="removeImage(image.id)" style="display:table;" >
+            <ion-icon name="trash">
+            </ion-icon>
+          </ion-button> 
+        </span>       
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,14 @@
+.productCardImg {
+    height:140px;
+    width:auto !important;
+    max-width:100%;
+    margin:0 auto;
+
+}
+.galleryCard {
+    width: calc(50% - 10px);
+    display: inline-block;
+    margin: 5px;
+    position: relative;
+    height: 250px;
+}

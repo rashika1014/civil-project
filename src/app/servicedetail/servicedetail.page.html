@@ -1,0 +1,182 @@
+<ion-header>
+  <ion-toolbar color="dark">
+      <ion-buttons slot="start">
+        <ion-button (click)="goToHomePage()">
+          <ion-icon name="arrow-back">
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    <ion-title>
+       Details
+    </ion-title>
+    </ion-toolbar>
+</ion-header>
+<!-- <ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Details
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <ion-card>
+    <div class="row" *ngIf="type=='landsurvey'">
+      <main id="main" class="site-main  col-xs-12  col-lg-9  col-lg-push-3" role="main">
+        <div class="row margin-bottom-30">
+          <div class="col-md-6 txt-body col1para">
+            <h2>Engineering Land Survey</h2>
+            <p style="font-size: large;">
+              This service involves measuring physical features of the land with great precision.
+              Based on these verifications, our survey engineers establish the dimensions, distances and angles of the land.
+              For accurate results, concepts of geometry, trigonometry, engineering, math and physics are applied. 
+              Application of state of art technology such as GPS, AutoCAD software, and digital photography add quality to land development
+              and construction projects.
+            </p>
+          </div>
+          
+          <div class="col-md-6">
+            <p>
+              <a data-featherlight="image" href="assets/images/land1.jpg">
+                <img class="alignnone" src="assets/images/land1.jpg" alt="engineering land surveyor" height="420" width="840" longdesc="civil engineering land surveyor">
+              </a>
+            </p>
+            <p>
+              <a data-featherlight="image" href="assets/images/land2.jpg">
+                <img class="alignnone" src="assets/images/land2.jpg" alt="land surveyor engineer" height="420" width="840">
+              </a>
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+  
+    <div class="row" *ngIf="type=='plot'">
+      <main id="main" class="site-main  col-xs-12  col-lg-9  col-lg-push-3" role="main">
+        <div class="row margin-bottom-30">
+          <div class="col-md-6 txt-body col1para">
+            <h2>Layout Marking/Demarcation</h2>
+            <p style="font-size: large;">
+              As per the topographical land survey, layout marking and demarcation is done inclusive of roads, plots, 
+              commercial spaces and extra spaces for public use etc. We ensure allotment of these spaces is as per the government norms. 
+              Based on the approvals from concerned authorities and clients, 
+              layout design is marked on the respective site as instructed by the site engineer.
+            </p>
+          </div>
+          
+          <div class="col-md-6">
+            <p>
+              <a data-featherlight="image">
+                <img class="alignnone" src="assets/images/layout1.jpg" alt="layout1" height="420" width="840" longdesc="layout marking">
+              </a>
+            </p>
+            <p>
+              <a data-featherlight="image">
+                <img class="alignnone" src="assets/images/layout2.jpg" alt="layout2" height="420" width="840">
+              </a>
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+  
+    <div class="row" *ngIf="type=='contour'">
+      <main id="main" class="site-main  col-xs-12  col-lg-9  col-lg-push-3" role="main">
+        <div class="row margin-bottom-30">
+          <div class="col-md-6 txt-body col1para">
+            <h2>Contour Survey</h2>
+            <p style="font-size: large;">
+              Our contour survey services are cost effective and can be customized to suffice the client specifications. 
+              Primary objective of conducting these surveys is to identify any noticeable difference in elevation of the existing land. 
+              Slopes matching the same height are joined using imaginary lines that are known as contours. 
+              Contour map highlights details of the existing land condition. 
+              Based on the findings of contour survey, the design team can decide on cutting, filling, widening, and leveling the land.
+            </p>
+          </div>
+          
+          <div class="col-md-6">
+            <p>
+              <a data-featherlight="image" href="assets/images/contour1.jpg">
+                <img class="alignnone" src="assets/images/contour1.jpg" alt="contour1" height="420" width="840" longdesc="contour surveyor">
+              </a>
+            </p>
+            <p>
+              <a data-featherlight="image" href="assets/images/contour2.jpg">
+                <img class="alignnone" src="assets/images/contour2.jpg" alt="contour2" height="420" width="840">
+              </a>
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+  
+    <div class="row" *ngIf="type=='earth'">
+      <main id="main" class="site-main  col-xs-12  col-lg-9  col-lg-push-3" role="main">
+        <div class="row margin-bottom-30">
+          <div class="col-md-6 txt-body col1para">
+            <h2>Estimating Earth Moving Work Volumes</h2>
+            <p style="font-size: large;">
+              For earth moving work contractors the key to survival is an accurate estimate of earth moving work quantities. 
+              Without an accurate estimate, the contractor will have little or no chance to present an accurate bill of excuted work. 
+              And without an accurate estimate of earth moving work volumes, the contractor will be unable to properly assign construction 
+              assets or formulate a project schedule.
+              Estimation of earth moving work (Filling & Cutting) is very essential data for estimating soil filling / cutting after
+              & before earth moving work has been executed. As per the site requirements our specialist technicians work hard on site
+              to get great precision value of your money and time.
+            </p>
+          </div>
+          
+          <div class="col-md-6">
+            <p>
+              <a data-featherlight="image" href="assets/images/earth1.png">
+                <img class="alignnone" src="assets/images/earth1.png" alt="earth1" height="420" width="840" longdesc="Earth Moving Work Volumes">
+              </a>
+            </p>
+            <p>
+              <a data-featherlight="image" href="assets/images/earth2.jpg">
+                <img class="alignnone" src="assets/images/earth2.jpg" alt="earth2" height="420" width="840">
+              </a>
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+    
+    <ion-button (click)="goToContactPage()" style="margin: 0 60px 10px 60px !important;">
+      Contact Us
+    </ion-button>
+  </ion-card>
+  <!-- <div class="row" *ngIf="type=='tilr'">
+    <main id="main" class="site-main  col-xs-12  col-lg-9  col-lg-push-3" role="main">
+      <div class="row margin-bottom-30">
+        <div class="col-md-6 txt-body">
+          <h2>T.I.L.R Survey Consultation</h2>
+          <p>
+            Land Records Department is controlled by the Director of Land Records and Settlement Commissioner, 
+            Maharashtra State, Pune. At the district and taluka level the work is done by the District Inspector of 
+            Land Records and Taluka Inspector of Land Records respectively.
+            Under this service, we offer assistance and consultation required to understand the procedures 
+            and functions as prescribed by the Taluka Inspector of Land Records (T.I.L.R) and take initiative for 
+            getting - village maps, Gut-book and other relevant documents required for official land survey.
+          </p>
+        </div>
+        
+        <div class="col-md-6">
+          <p>
+            <a data-featherlight="image" href="images/Engineering-Land-Survey-Mumbai.png">
+              <img class="alignnone" src="images/Engineering-Land-Survey-Mumbai.png" alt="engineering land surveyor" height="420" width="840" longdesc="civil engineering land surveyor">
+            </a>
+          </p>
+          <p>
+            <a data-featherlight="image" href="images/Engineering-Land-Survey-Maharashtra.png">
+              <img class="alignnone" src="images/Engineering-Land-Survey-Maharashtra.png" alt="land surveyor engineer" height="420" width="840">
+            </a>
+          </p>
+        </div>
+      </div>
+    </main>
+  </div> -->
+</ion-content>

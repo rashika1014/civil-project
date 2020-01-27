@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Add Slides
+    </ion-title>
+  </ion-toolbar>
+  <ng-progress #progressBar id="myProgress" color="#FF4500"></ng-progress>
+</ion-header>
+
+<ion-content padding class="signup home-slider-page">
+	<ion-item-divider light>
+		Upload image to add slider at home page
+	</ion-item-divider><br><br>
+		<ion-item>
+			<input id="slideImg" class="marginInput" type="file" placeholder="select slide image" (change)="onImageFileChange()" />
+			<img *ngIf="currentSrc" src="{{currentSrc}}" style="max-width:100px; float:right;">
+		</ion-item>
+		
+		<ion-button color= "dark" [disabled]="submitDisabled" type="submit" style="display: block;" (click)="addHomeSlide($event)">
+			 ADD
+		</ion-button>
+	<hr>
+	
+  <ion-label *ngFor="let slide of slides; let i = index">
+    <img [src]="slide.src" class="slide-image" 
+      style="max-width:382px!important; max-height:208px!important;" 
+      #myImage />
+    <ion-button outline small item-right icon-only  color= "light" (click)="removeHomeSlide(slide.id)" style="display:table;">
+      <ion-icon name="trash">
+      </ion-icon>
+    </ion-button>
+  </ion-label>
+</ion-content>

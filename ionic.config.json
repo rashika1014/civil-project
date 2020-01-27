@@ -1,0 +1,7 @@
+{
+  "name": "pwaMaking",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
