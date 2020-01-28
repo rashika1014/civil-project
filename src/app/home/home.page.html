@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title class="htitle">
-      Surveyors
+      Survey
         <img src="assets/icon/logo.png" #myImage class="logoC" width="50" height="50" />
     </ion-title>
   </ion-toolbar>
@@ -14,9 +14,17 @@
   <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-slides pager [options]="sliderOpts">
+  <ion-slides pager [options]="sliderOpts" (ionDidChange)="onSlideChanged()">
+    
     <ion-slide *ngFor="let slide of slides; let i = index">
-      <img [src]="slide.src" class="slide-image" #myImage />
+      <div class="video-container" *ngIf="slide.displayType == 'video'">
+        <!-- <iframe width="560" height="315" allow="autoplay"
+          [src]="slide.safeSrc" frameborder="0" allowfullscreen></iframe> -->
+          <video controls autoplay width="100%" height="50%">
+            <source [src]="slide.safeSrc" type="video/mp4" class="slide-image">
+          </video>
+      </div>
+      <img  *ngIf="slide.displayType == 'image'" [src]="slide.src" class="slide-image" #myImage />
     </ion-slide>
     <!-- <ion-slide>
       <img src="assets/images/sur2.jpg" class="slide-image" #myImage />
@@ -24,12 +32,12 @@
   </ion-slides>
   <ion-list lines="none" class="homeB">
       <div class="H1Detail">
-        <h3>GOYAL LAND SURVEYORS :</h3>
+        <h3>GOYAL LAND SURVEY :</h3>
       </div>
       <h5><b>Rely on Us for Fast & Accurate Land Surveillance</b></h5>
-      <h5>We are professionally managed team of land surveyors located at Mandala, Madhya Pradesh. We are successfully executing survey projects in and around the vicinity of Mandala suburbs.</h5>
-      <h5>Our survey activities also cater to areas on the outskirts of Mandala in Jabalpur, Kanhakisli.</h5>
-      <h5>We operate from a well-equipped office at Mandala (M.P.) accompanied by a network of skilled professionals including</h5>
+      <h5>We are professionally managed team of land surveyors located at Mandla, Madhya Pradesh. We are successfully executing survey projects in and around the vicinity of Mandla suburbs.</h5>
+      <h5>Our survey activities also cater to areas on the outskirts of Mandla in Jabalpur, Kanhakisli.</h5>
+      <h5>We operate from a well-equipped office at Mandla (M.P.) accompanied by a network of skilled professionals including</h5>
       <h5>engineers, supervisors, technicians and marketing executives. Experienced professionals assure our esteemed clients of ethical business practices and flawless services.</h5>
       <h5>Over the years, we have implemented a range of services inclusive of 
         <u>
@@ -40,7 +48,7 @@
         </u>.
       </h5>
         
-      <h5>Goyal Land Surveyors & Consultants has been acknowledged for its effectiveness and accuracy in delivering services under the stipulated project duration. Our field operations involve usage of cutting edge technologies and latest processing software.</h5>
+      <h5>Goyal Land Survey & Consultants has been acknowledged for its effectiveness and accuracy in delivering services under the stipulated project duration. Our field operations involve usage of cutting edge technologies and latest processing software.</h5>
       <ion-button (click)="goToContactPage()">
         Schedule an Appointment
       </ion-button>
@@ -56,12 +64,12 @@
           The work that was done was outstanding and the project was completed on 
           time and under budget. The staff was very helpful when we had questions 
           on various phases of the contract. We would not hesitate to recommend Goyal 
-          Land Surveyors for similar projects and would hope to use them again in the future. </h5>
+          Land Survey for similar projects and would hope to use them again in the future. </h5>
       </ion-slide>
         <ion-slide style="display: block;">
           <h4>Nirman Associates, Sagar</h4>
           <h5 class="testimonial__quote">
-            The task management is worth praising, team co-ordination of Goyal Land Surveyors is well-equipped.
+            The task management is worth praising, team co-ordination of Goyal Land Survey is well-equipped.
             We are happy with the project that is done in a fine manner by this company, hope to work again in future.
              </h5>
         </ion-slide>
@@ -75,9 +83,9 @@
         <ion-slide style="display: block;">
           <h4>Grand pipal resort, Mukki, Kanha National Park</h4>
           <h5 class="testimonial__quote"> 
-            It was a pleasure dealing with Goyal Land Surveyors  From their 
+            It was a pleasure dealing with Goyal Land Survey  From their 
             attitude and  approach to the execution and completion of the project, 
-            Goyal Land Surveyors was totally professional. We are very pleased. </h5>
+            Goyal Land Survey was totally professional. We are very pleased. </h5>
         </ion-slide>
       </ion-slides>
     </ion-list>

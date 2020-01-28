@@ -12,10 +12,39 @@
 
 <ion-content padding class="signup home-slider-page">
 	<ion-item-divider light>
+    
 		Upload image to add slider at home page
-	</ion-item-divider><br><br>
+  </ion-item-divider><br><br>
+  <ion-item>
+    <ion-label position ="stacked">
+      Select display type
+    </ion-label>
+    <ion-select  [(ngModel)]="displayType"  okText="Okay" cancelText="Dismiss"
+      placeholder="CHOOSE TO DESPLAY IMAGE OR VIDEO">
+      <ion-select-option value="image">
+        IMAGE
+      </ion-select-option>
+      <ion-select-option value="video">
+        VIDEO
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  <!-- <ion-item *ngIf="displayType == 'video'">
+    <ion-label position ="stacked">
+      VIDEO URL
+    </ion-label>
+    <ion-input formControlName="src" type="text" placeholder="{{'ENTER_VIDEO_EMBEDED_URL' | translate}}"
+      [value]="src"  >
+    </ion-input>
+  </ion-item>
+  <ion-item *ngIf="displayType == 'image'">
+    <input id="slideImg" class="marginInput" type="file" placeholder="{{'SELECT_SLIDE_IMAGE' | translate}}" (change)="onImageFileChange()" />
+    <img *ngIf="currentSrc" src="{{currentSrc}}" style="max-width:100px; float:right;">
+  </ion-item> -->
+
 		<ion-item>
-			<input id="slideImg" class="marginInput" type="file" placeholder="select slide image" (change)="onImageFileChange()" />
+			<input id="slideImg" class="marginInput" type="file" placeholder="select slide image" (change)="onImageFileChange(displayType)" />
 			<img *ngIf="currentSrc" src="{{currentSrc}}" style="max-width:100px; float:right;">
 		</ion-item>
 		
@@ -25,7 +54,11 @@
 	<hr>
 	
   <ion-label *ngFor="let slide of slides; let i = index">
-    <img [src]="slide.src" class="slide-image" 
+    <div class="video-container" *ngIf="slide.displayType == 'video'">
+      <iframe  autoplay style="max-width:382px!important; max-height:208px!important;" 
+        [src]="slide.safeSrc" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <img [src]="slide.src" class="slide-image"  *ngIf="slide.displayType == 'image'"
       style="max-width:382px!important; max-height:208px!important;" 
       #myImage />
     <ion-button outline small item-right icon-only  color= "light" (click)="removeHomeSlide(slide.id)" style="display:table;">

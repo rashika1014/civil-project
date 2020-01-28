@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Platform, NavController, ToastController, AlertController } from '@ionic/angular';
+import { DomSanitizer}                                         from '@angular/platform-browser';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -21,7 +22,8 @@ export class HomePage {
 		}
   };
   
-  constructor(public navCtrl : NavController) {
+  constructor(public navCtrl : NavController,
+    public sanitizer  : DomSanitizer) {
     var self= this;
     console.log('23333333333333')
     if(localStorage.isAdmin == undefined || localStorage.isAdmin == null || localStorage.isAdmin == "false") {
@@ -57,11 +59,12 @@ export class HomePage {
 			self.slides.forEach(function(slide) {
 				for (let key in slide) {
 					let value = slide[key];
-					// if(value == "video") {
-					// 	//Adding player settings
-					// 	let newSrc = "https://www.youtube.com/embed/" + slide['src'] + "?enablejsapi=1&rel=0&autoplay=0&showinfo=0&controls=1";
-					// 	slide["safeSrc"] = this.sanitizer.bypassSecurityTrustResourceUrl(newSrc);
-					// }
+					if(value == "video") {
+						//Adding player settings
+            let newSrc = slide['src'];
+            
+						slide["safeSrc"] = self.sanitizer.bypassSecurityTrustResourceUrl(newSrc);
+					}
 				}
 			});
 			self.slides = self.shuffle(self.slides);
@@ -117,14 +120,14 @@ export class HomePage {
     }, 2000);
   }
   
-  onSlideChanged() {
-		//this.pauseVideo();
-		var iframeM:any = document.getElementsByTagName("iframe");
-		for (let ifr of iframeM) {
-			let iframe  = ifr.contentWindow;
-			iframe.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', '*');
-		}
-  }
+  // onSlideChanged() {
+	// 	//this.pauseVideo();
+	// 	var iframeM:any = document.getElementsByTagName("iframe");
+	// 	for (let ifr of iframeM) {
+	// 		let iframe  = ifr.contentWindow;
+	// 		iframe.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', '*');
+	// 	}
+  // }
   
   goToContactPage() {
     this.navCtrl.navigateForward('list');
@@ -133,4 +136,88 @@ export class HomePage {
   openPage(type) {
     this.navCtrl.navigateForward(['servicedetail', {type: type}]);
   }
+
+  	// device APIs are available
+	onPause() {
+		//this.pauseVideo();
+		var iframeM:any = document.getElementsByTagName("iframe");
+		for (let ifr of iframeM) {
+			let iframe  = ifr.contentWindow;
+			iframe.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', '*');
+		}
+	}
+
+	// device APIs are available
+	onMenuKeyDown() {
+		//this.pauseVideo();
+		var iframeM:any = document.getElementsByTagName("iframe");
+		for (let ifr of iframeM) {
+			let iframe  = ifr.contentWindow;
+			iframe.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', '*');
+		}
+	}
+
+	// device APIs are available
+	onBackbutton() {
+		//this.pauseVideo();
+		var iframeM:any = document.getElementsByTagName("iframe");
+		for (let ifr of iframeM) {
+			let iframe  = ifr.contentWindow;
+			iframe.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', '*');
+		}
+	}
+
+	onPageWillLeave() {
+		//this.pauseVideo();
+		var iframeM:any = document.getElementsByTagName("iframe");
+		for (let ifr of iframeM) {
+			let iframe  = ifr.contentWindow;
+			iframe.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', '*');
+		}
+	}
+
+	onPageWillUnload() {
+		//this.pauseVideo();
+		var iframeM:any = document.getElementsByTagName("iframe");
+		for (let ifr of iframeM) {
+			let iframe  = ifr.contentWindow;
+			iframe.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', '*');
+		}
+	}
+
+	onPageDidLeave() {
+		//this.pauseVideo();
+		var iframeM:any = document.getElementsByTagName("iframe");
+		for (let ifr of iframeM) {
+			let iframe  = ifr.contentWindow;
+			iframe.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', '*');
+		}
+	}
+
+	onPageDidUnload() {
+		//this.pauseVideo();
+		var iframeM:any = document.getElementsByTagName("iframe");
+		for (let ifr of iframeM) {
+			let iframe  = ifr.contentWindow;
+			iframe.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', '*');
+		}
+	}
+
+	onSlideChanged() {
+		//this.pauseVideo();
+		var iframeM:any = document.getElementsByTagName("iframe");
+		for (let ifr of iframeM) {
+			let iframe  = ifr.contentWindow;
+			iframe.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', '*');
+		}
+	}
+
+	pauseVideo() {
+		var iframeM:any = document.getElementsByTagName("iframe");
+		for (let ifr of iframeM) {
+			let iframe  = ifr.contentWindow;
+			iframe.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', '*');
+		}
+	}
+
 }

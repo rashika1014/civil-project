@@ -91,12 +91,12 @@ export class LoginPage implements OnInit {
             }
             // self.isLoggedIn = true; //Set user loggedIn is false;
 			localStorage.setItem('isAdmin', 'true');
-            var msg = 'Hi ' + userInfo.name + '! Welcome back to Goyal land surveyors & consultant';
+            var msg = 'Hi ' + userInfo.name + '! Welcome back to Goyal land survey & consultant';
             self.presentToast(msg);
             setTimeout(function(){
 				self.isAdmin = true;
-				this.navCtrl.navigateBack('home');
-              	// window.location.reload();
+				//this.navCtrl.navigateBack('home');
+              	window.location.reload();
             }, 100);
           }
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgProgress, NgProgressRef }             from 'ngx-progressbar';
 import {NavController, AlertController, ToastController} from '@ionic/angular';
+import { DomSanitizer}                                         from '@angular/platform-browser';
+
 
 import * as firebase         from 'firebase/app';
 
@@ -10,29 +12,33 @@ import * as firebase         from 'firebase/app';
   styleUrls: ['./addslides.page.scss'],
 })
 export class AddslidesPage implements OnInit {
-  public submitDisabled  : boolean = false;
-  public currentSrc     : any;
-  public slides         : any =[];
-  public progressRef     : NgProgressRef;
-  constructor(private ngProgress: NgProgress,
-    private alertCtrl : AlertController,
-    private toastCtrl  : ToastController,) {
-    this.progressRef = this.ngProgress.ref('myProgress');
-  }
+	public submitDisabled  : boolean = false;
+	public currentSrc     : any;
+	public displayType    : any="image";
+	public slides         : any =[];
+	public progressRef     : NgProgressRef;
+	constructor(private ngProgress: NgProgress,
+		private alertCtrl : AlertController,
+		private toastCtrl  : ToastController,
+		public sanitizer  : DomSanitizer) {
+			
+		this.progressRef = this.ngProgress.ref('myProgress');
+	}
 
-  ngOnInit() {
-    //Fetching HomeSlides
-	this.getHomeSlides();
-  }
+	ngOnInit() {
+		//Fetching HomeSlides
+		this.getHomeSlides();
+	}
 
-  getDate() {
+  	getDate() {
 		return new Date();
 	}
-  slideId     = null;
+
+  	slideId     = null;
 
 
-  getHomeSlides() {
-    var self = this;
+	getHomeSlides() {
+		var self = this;
 		this.getSlides(function(isSuccess, snapshotArray) {
 			//console.log(snapshot);
 			self.slides = snapshotArray;
@@ -41,62 +47,64 @@ export class AddslidesPage implements OnInit {
 			self.slides.forEach(function(slide) {
 				for (let key in slide) {
 					let value = slide[key];
-					// if(value == "video") {
-					// 	//Adding player settings
-					// 	let newSrc = "https://www.youtube.com/embed/" + slide['src'] + "?enablejsapi=1&rel=0&autoplay=0&showinfo=0&controls=1";
-					// 	slide["safeSrc"] = self.sanitizer.bypassSecurityTrustResourceUrl(newSrc);
-					// }
+					if(value == "video") {
+						//Adding player settings
+						let newSrc = slide['src'];
+						slide["safeSrc"] = self.sanitizer.bypassSecurityTrustResourceUrl(newSrc);
+					}
 				}
 			});
 		});
-  }
-  
-  getSlides(callback){
-    firebase.firestore().collection('HomeSlideCollection')
-		.onSnapshot(function(querySnapshot) {
-			var snapshotArray = [];
-			querySnapshot.forEach(function(doc) {
-				// doc.data() is never undefined for query doc snapshots
-				//console.log(doc.id, " => ", doc.data());
-				var object = doc.data();
-				// set id in object
-				object['id'] = doc.id;
-				// push in array of product objects
-				snapshotArray.push(object);
-			});
-			// callback execution
-			callback(true, snapshotArray);
-		}, function(error) {
-			// callback execution
-			callback(false, null);
-    });
-  }
+	}
+	
+	getSlides(callback){
+		firebase.firestore().collection('HomeSlideCollection')
+			.onSnapshot(function(querySnapshot) {
+				var snapshotArray = [];
+				querySnapshot.forEach(function(doc) {
+					// doc.data() is never undefined for query doc snapshots
+					//console.log(doc.id, " => ", doc.data());
+					var object = doc.data();
+					// set id in object
+					object['id'] = doc.id;
+					// push in array of product objects
+					snapshotArray.push(object);
+				});
+				// callback execution
+				callback(true, snapshotArray);
+			}, function(error) {
+				// callback execution
+				callback(false, null);
+		});
+	}
 
-  onImageFileChange() {
-		var self = this;
-		var slideImgBtn: any = document.getElementById("slideImg");
-		var file = null;
-		
-		if(slideImgBtn != null) {
-			self.submitDisabled = true;
-			//Get file
-			file = slideImgBtn.files[0];
-			if(file !== undefined) {
-				/** request started */
-				this.progressRef.start();
-				this.addSlideImage(function(downloadURL) {
-				self.currentSrc     = downloadURL;
-					/** request started */
-					self.progressRef.complete();
-					self.submitDisabled = false;
-				}, self.slideId, file);
-			} else {
+	onImageFileChange(type) {
+		// if(type=="image") {
+			var self = this;
+			var slideImgBtn: any = document.getElementById("slideImg");
+			var file = null;
 			
+			if(slideImgBtn != null) {
+				self.submitDisabled = true;
+				//Get file
+				file = slideImgBtn.files[0];
+				if(file !== undefined) {
+					/** request started */
+					this.progressRef.start();
+					this.addSlideImage(function(downloadURL) {
+					self.currentSrc     = downloadURL;
+						/** request started */
+						self.progressRef.complete();
+						self.submitDisabled = false;
+					}, self.slideId, file);
+				} else {
+				
+				}
 			}
-		}
-  }
+		// }	
+	}
   
-  addSlideImage(callback: any, slideId: string, file: File) {
+	addSlideImage(callback: any, slideId: string, file: File) {
 		if(file != null) {
 			if(file != undefined) {
 				//Create a storage ref
@@ -126,15 +134,15 @@ export class AddslidesPage implements OnInit {
 						task.snapshot.ref.getDownloadURL().then(function(downloadURL) {
 							//console.log('File available at', downloadURL);
 							callback(downloadURL);
-					  });
+						});
 					}
 				)
 			}
 		}
-  }
+	}
   
 
-  addHomeSlide(event) {
+	addHomeSlide(event) {
 		event.preventDefault();
 		var self = this;
 		//Get Elements
@@ -149,48 +157,47 @@ export class AddslidesPage implements OnInit {
 				file = self.currentSrc;
 			}
 		}
-		
+			
 		if(file != undefined) {
 			this.submitDisabled = true;
-      //Add Slider
-      firebase.firestore().collection('HomeSlideCollection').add({
-				admin     : localStorage.isAdmin,
+			//Add Slider
+			firebase.firestore().collection('HomeSlideCollection').add({
+				admin       : localStorage.isAdmin,
+				displayType : self.displayType,
 				src         : self.currentSrc,
 				isDeleted   : false,
 				createDate  : self.getDate(),
 				updatedDate: self.getDate()
-			})
-			.then(function(docRef) {
-        self.presentToast('SLIDER ADDED SUCCESSFULLY');
-				self.submitDisabled = false;
-			})
-			.catch(function(error) {
+			}).then(function(docRef) {
+				self.presentToast('SLIDER ADDED SUCCESSFULLY');
+					self.submitDisabled = false;
+			}).catch(function(error) {
 				console.error("Error adding document: ", error);
 				self.presentToast('PLEASE ADD IMAGE FOR THE SLIDER');
 			});
 		} else {
 			//Display Toast Message
 			//Displaying toast to welcome user!
-        self.presentToast('PLEASE ADD IMAGE FOR THE SLIDER');
+			self.presentToast('PLEASE ADD IMAGE FOR THE SLIDER');
 		}
-  }
-
-  removeHomeSlide(slideId) {
-	var self = this;
-	function removeConfirmed() {
-	firebase.firestore().collection('HomeSlideCollection').doc(slideId).delete()
-	.then(function() {
-		self.presentToast('SLIDER REMOVED SUCCESSFULLY');
-		}).catch(function(error) {
-		// error;
-		});
 	}
 
-	/*Confirm first, if user really wants to remove product!
-		Arguments: title, message, AgreeButtonText, DisAgreeButtonText
-					, callback function on removeConfirmed, callback function on not removed
-	*/
-	this.showConfirmDialog("Are you Sure?",
+	removeHomeSlide(slideId) {
+		var self = this;
+		function removeConfirmed() {
+		firebase.firestore().collection('HomeSlideCollection').doc(slideId).delete()
+		.then(function() {
+			self.presentToast('SLIDER REMOVED SUCCESSFULLY');
+			}).catch(function(error) {
+			// error;
+			});
+		}
+
+		/*Confirm first, if user really wants to remove product!
+			Arguments: title, message, AgreeButtonText, DisAgreeButtonText
+						, callback function on removeConfirmed, callback function on not removed
+		*/
+		this.showConfirmDialog("Are you Sure?",
 		"Do you agree to remove this slide?",
 		"Cancel", "Yes. Remove now!",
 		removeConfirmed, function(){});

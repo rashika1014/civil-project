@@ -33,6 +33,11 @@
               &nbsp; {{user.name}}
               <br>
             </span>
+            <span *ngIf="user.message" class="item-text-wrap">
+              <ion-icon name="chatbubbles" color="dark"></ion-icon>
+              &nbsp; {{user.message}}
+              <br>
+            </span>
             <ion-label style="bottom:0;">
               {{timestampToDateTime1(user.createDate)}}
             </ion-label>
