@@ -31,7 +31,7 @@
     "@ionic/storage": "^2.2.0",
     "core-js": "^2.5.4",
     "firebase": "^7.6.2",
-    "firebase-tools": "^7.12.1",
+    "firebase-tools": "^11.30.0",
     "ngx-progressbar": "^6.0.1",
     "npm-upgrade": "^2.0.2",
     "rxjs": "~6.5.1",
